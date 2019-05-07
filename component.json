@@ -1,0 +1,118 @@
+{
+    "title": "SqlManagementClient",
+    "description": "The Azure SQL Database management API provides a RESTful set of web APIs that interact with Azure SQL Database services to manage your databases. The API enables users to create, retrieve, update, and delete databases, servers, and other entities.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/sql-virtualNetworkRules/2015-05-01-preview/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "VirtualNetworkRules_ListByServer": {
+            "main": "./lib/actions/VirtualNetworkRules_ListByServer.js",
+            "title": "Gets a list of virtual network rules in a server.",
+            "description": "Gets a list of virtual network rules in a server.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/VirtualNetworkRules_ListByServer.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "VirtualNetworkRules_Delete": {
+            "main": "./lib/actions/VirtualNetworkRules_Delete.js",
+            "title": "Deletes the virtual network rule with the given name.",
+            "description": "Deletes the virtual network rule with the given name.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/VirtualNetworkRules_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "VirtualNetworkRules_Get": {
+            "main": "./lib/actions/VirtualNetworkRules_Get.js",
+            "title": "Gets a virtual network rule.",
+            "description": "Gets a virtual network rule.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/VirtualNetworkRules_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "VirtualNetworkRules_CreateOrUpdate": {
+            "main": "./lib/actions/VirtualNetworkRules_CreateOrUpdate.js",
+            "title": "Creates or updates an existing virtual network rule.",
+            "description": "Creates or updates an existing virtual network rule.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/VirtualNetworkRules_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
